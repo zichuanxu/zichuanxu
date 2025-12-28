@@ -12,10 +12,6 @@
   </a>
 </div>
 
-My research interest lies in **Reinforcement Learning (RL)** and **Emergent Language**.
-
-- 🔭 I’m currently working on research related to multi-agent reinforcement learning.
-- 📫 How to reach me: **xu.zichuan@ist.osaka-u.ac.jp**
 
 ---
 
@@ -23,10 +19,10 @@ My research interest lies in **Reinforcement Learning (RL)** and **Emergent Lang
 
 <div align="center">
   <a href="https://github.com/zichuanxu">
-    <img width="49%" src="https://github-readme-stats.vercel.app/api?username=zichuanxu&show_icons=true&theme=radical" alt="GitHub Stats" />
+    <img width="49%" src="https://github-readme-stats.vercel.app/api?username=zichuanxu&show_icons=true&theme=radical" />
   </a>
   <a href="https://github.com/zichuanxu">
-    <img width="49%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=zichuanxu&layout=compact&theme=radical" alt="Top Languages" />
+    <img width="49%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=zichuanxu&layout=compact&theme=radical" />
   </a>
 </div>
 
