@@ -19,9 +19,6 @@
 
 <div align="center">
   <a href="https://github.com/zichuanxu">
-    <img width="49%" src="https://github-readme-stats.vercel.app/api?username=zichuanxu&show_icons=true&theme=radical" />
-  </a>
-  <a href="https://github.com/zichuanxu">
     <img width="49%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=zichuanxu&layout=compact&theme=radical" />
   </a>
 </div>
