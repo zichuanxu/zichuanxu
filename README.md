@@ -17,11 +17,11 @@
 
 ### 📊 My GitHub Stats
 
-<div align="center">
-  <a href="https://github.com/zichuanxu">
-    <img width="49%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=zichuanxu&layout=compact&theme=radical" />
-  </a>
-</div>
+<p align="center">
+    <img src="https://github-stats.ubrong.com/api?username=zichuanxu&amp;show_icons=true&amp;theme=tokyonightht" />
+   <img src="https://github-stats.ubrong.com/api/top-langs/?username=zichuanxu&amp;layout=compact&amp;theme=tokyonight" />
+</p>
+
 
 ---
 
