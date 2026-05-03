@@ -25,11 +25,12 @@
 
 ---
 
-### 💻 Tech Stack
+### 💻 Tech Stack / Tools
 
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=python,go,java,c,mysql,git,docker,linux" />
+    <img src="https://skillicons.dev/icons?i=python,javascript,go,java,c,postgresql,mysql,redis,vue,react,git,docker,linux,aws" />
+    <img src="https://skillicons.dev/icons?i=latex,github,gmail,markdown,pr,ps,ae" />
   </a>
 </p>
 
