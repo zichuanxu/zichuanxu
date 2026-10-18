@@ -10,8 +10,6 @@
 
 I'm an **AI Agent Development Engineer at [Initial. S](https://initial-s.com/)** in Tokyo and a **master's student at The University of Osaka**, advised by [Prof. Chuan Xiao](https://sites.google.com/site/chuanxiao1983/).
 
-I build agent applications and the systems behind them. My work on **KuraClaw** and **KuraWork** spans agent execution, tool integrations, personal knowledge, and shared cloud services—from backend APIs to desktop interfaces.
-
 ## What I work on
 
 - **Agent systems** — Tool use, harness engineering, context management, and orchestration.
