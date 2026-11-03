@@ -8,7 +8,7 @@
 
 </div>
 
-I'm an **AI Agent Development Engineer at [Initial. S](https://initial-s.com/)** in Tokyo and a **master's student at The University of Osaka**, advised by [Prof. Chuan Xiao](https://sites.google.com/site/chuanxiao1983/).
+I'm now an **AI Agent Development Engineer Intern at [Initial. S](https://initial-s.com/)** 
 
 ## What I work on
 
@@ -23,7 +23,7 @@ I care about identifying important problems, understanding the mechanisms behind
 | Project | About |
 | --- | --- |
 | **[ToolBottleneckBench](https://github.com/zichuanxu/tool-bottleneck-bench)** | Tool-agent performance under controlled pressures and fixed harness budgets. Includes code, scored data, and reproducible analyses. **[Paper · arXiv 2026](https://arxiv.org/abs/2610.21098)** |
-| **[NimGet](https://github.com/zichuanxu/nimget)** | A Go download manager with parallel transfers, resumable downloads, and a shared service for its desktop app and CLI. |
+| **[MemShift](https://github.com/zichuanxu/memshift)** | Separating detection from repair in LLM-derived personal memory under five controlled shifts, with a deterministic scorer instead of an LLM judge. **[Paper · arXiv 2026](https://arxiv.org/abs/2611.02338)** |
 | **[HUST-CSE-Experiments](https://github.com/zichuanxu/HUST-CSE-Experiments)** | Course projects and experiments across security, cryptography, operating systems, compilers, and networking. |
 
 ## Tools I work with
