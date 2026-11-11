@@ -13,11 +13,7 @@
 </p>
 
 <p align="center">
-  <img src="assets/neon.svg" width="49%" alt="A neon sign on a brick wall. It reads Open when I have contributed today or yesterday and Closed otherwise, with my current streak in days underneath."> <img src="assets/ridges.svg" width="49%" alt="A ridgeline drawing of my last 30 weeks: one smooth line per week, rising on the days I contributed, newest week in front.">
-</p>
-
-<p align="center">
-  <img src="assets/chalk.svg" width="49%" alt="A chalkboard sketch of my contributions by weekday, Monday to Sunday, with the busiest day marked."> <img src="assets/poster.svg" width="49%" alt="A Bauhaus-style print of my last twelve months: one tile per month, with a bigger shape for a busier month.">
+  <img src="assets/chalk.svg" width="49%" alt="A chalkboard sketch of my contributions by weekday, Monday to Sunday, with the busiest day marked.">
 </p>
 
 <p align="center">

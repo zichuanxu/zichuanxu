@@ -9,10 +9,7 @@ pet.svg       virtual pet that is fed by contributions
 tank.svg      aquarium: the four biggest languages swim as fish
 mixtape.svg   cassette whose equaliser is the last two weeks and whose tape winds through the year
 year.svg      the cat naps on a progress bar for the year
-neon.svg      neon sign: open if there was a contribution today or yesterday, plus the live streak
-ridges.svg    ridgeline drawing, one line per week for the last 30 weeks
 chalk.svg     chalkboard sketch of contributions by weekday
-poster.svg    Bauhaus-style print, one tile per month, bigger shape = busier month
 """
 import datetime
 import json
@@ -303,61 +300,6 @@ def year(today):
     return svg(800, 84, "\n".join(b), css)
 
 
-def current_run(counts):
-    """Length of the streak that is still alive: a quiet today doesn't break it yet."""
-    run = 0
-    for c in reversed(counts[:-1] if counts and not counts[-1] else counts):
-        if not c:
-            break
-        run += 1
-    return run
-
-
-assert current_run([1, 1, 0]) == 2 and current_run([1, 0, 0]) == 0 and current_run([0, 3, 2]) == 2 and current_run([]) == 0
-
-
-def neon(counts):
-    is_open = mood(counts)[0] == "happy"
-    word, size, pink = ("OPEN", 78, "#ff4fa3") if is_open else ("CLOSED", 58, "#ff6b5e")
-    tube = 'fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"'
-    face = "font-family=\"'Arial Rounded MT Bold','Helvetica Neue',Arial,sans-serif\" font-weight=\"700\" text-anchor=\"middle\""
-    b = ['<defs><pattern id="brick" width="40" height="20" patternUnits="userSpaceOnUse"><rect width="40" height="20" fill="#1d1626"/>'
-         '<path d="M0 .5H40M0 10.5H40M20 0V10M.5 10V20" stroke="#2b2137" stroke-width="1.5"/></pattern>'
-         '<filter id="glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="5" result="b"/>'
-         '<feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>',
-         '<rect width="400" height="300" rx="14" fill="url(#brick)"/>',
-         '<path d="M120 0V98M280 0V98" stroke="#0e0a14" stroke-width="2"/>',
-         f'<path {tube} stroke="#ffe066" stroke-width="3" d="M177 72L172 38L190 52Q200 47 210 52L228 38L223 72Q222 88 200 88Q178 88 177 72ZM189 68q3 -4 6 0M205 68q3 -4 6 0M197 77h6"/>',
-         f'<rect {tube} class="hum" x="48" y="100" width="304" height="152" rx="22" stroke="#4de1ff" stroke-width="3"/>',
-         f'<text {tube} {face} class="flick" x="200" y="{188 if is_open else 180}" font-size="{size}" letter-spacing="6" stroke="{pink}" stroke-width="3">{word}</text>',
-         f'<text {face} x="200" y="230" font-size="19" letter-spacing="3" fill="#ffe066" filter="url(#glow)">{current_run(counts)} DAY STREAK</text>']
-    css = """@keyframes flick{0%,18%,22%,25%,53%,57%,100%{opacity:1}20%,24%,55%{opacity:.3}}
-@keyframes hum{0%,100%{opacity:1}50%{opacity:.8}}
-.flick{animation:flick 4.5s infinite}
-.hum{animation:hum 3s ease-in-out infinite}"""
-    return svg(400, 300, "\n".join(b), css)
-
-
-def ridges(weeks):
-    recent = weeks[-30:]
-    top = max(max(d["contributionCount"] for wk in recent for d in wk["contributionDays"]), 1)
-    b = ['<rect width="400" height="300" rx="14" fill="#101426"/>']
-    for i, wk in enumerate(recent):  # oldest first, so newer weeks are drawn in front
-        base, days = 64 + i * 7.3, [d["contributionCount"] for d in wk["contributionDays"]]
-        vals = [0, 0] + days + [0] * (9 - len(days))
-        pts = [(70 + k * 26, base - 46 * math.log1p(v) / math.log1p(top)) for k, v in enumerate(vals)]
-        d = f"M30 {base:.1f}L{pts[0][0]} {pts[0][1]:.1f}"
-        for (x1, y1), (x2, y2) in zip(pts[1:], pts[2:]):  # smooth: curve through each point to the next midpoint
-            d += f"Q{x1} {y1:.1f} {(x1 + x2) / 2} {(y1 + y2) / 2:.1f}"
-        d += f"L{pts[-1][0]} {base:.1f}L370 {base:.1f}"
-        newest = i == len(recent) - 1
-        b.append(f'<path class="rg" d="{d}" fill="#101426" stroke="{"#ffb26b" if newest else "#eef2ff"}" stroke-width="{2 if newest else 1.4}" '
-                 f'stroke-opacity="{.3 + .7 * i / len(recent):.2f}" stroke-linejoin="round" style="animation-delay:{i * .12:.2f}s"/>')
-    css = """@keyframes rg{5%{stroke:#ff8fc7;stroke-opacity:1}}
-.rg{animation:rg 7s ease-out infinite}"""
-    return svg(400, 300, "\n".join(b), css)
-
-
 def chalk(days):
     totals = [0] * 7
     for d in days:
@@ -387,44 +329,12 @@ def chalk(days):
     return svg(400, 300, "\n".join(b), css)
 
 
-def poster(days):
-    months = {}
-    for d in days:
-        months[d["date"][:7]] = months.get(d["date"][:7], 0) + d["contributionCount"]
-    last = list(months.values())[-12:]
-    top = max(max(last), 1)
-    paper, red, blue, yellow, black = "#f3ead8", "#d9412b", "#23479a", "#f2b632", "#1c1c1c"
-    pairs = [(paper, red), (blue, yellow), (yellow, black), (black, paper), (red, paper), (paper, blue),
-             (black, yellow), (yellow, blue), (blue, paper), (paper, black), (red, black), (yellow, red)]
-    face = "font-family=\"Futura,'Century Gothic','Avenir Next',Helvetica,Arial,sans-serif\" font-weight=\"700\" font-size=\"11\" letter-spacing=\"3\""
-    b = [f'<rect width="400" height="300" rx="14" fill="{paper}"/>']
-    for i, (tot, (bg, fg)) in enumerate(zip(last, pairs)):
-        r = 34 * (.3 + .7 * math.log1p(tot) / math.log1p(top))
-        shape = (f'<circle class="br" cx="44" cy="40" r="{r:.1f}" fill="{fg}"/>',
-                 f'<path d="M0 80V{80 - 2 * r:.1f}A{2 * r:.1f} {2 * r:.1f} 0 0 1 {2 * r:.1f} 80Z" fill="{fg}"/>',
-                 f'<rect class="tn" x="{44 - r * .8:.1f}" y="{40 - r * .8:.1f}" width="{r * 1.6:.1f}" height="{r * 1.6:.1f}" fill="{fg}"/>',
-                 f'<path d="M{44 - 1.2 * r:.1f} 80A{1.2 * r:.1f} {1.2 * r:.1f} 0 0 1 {44 + 1.2 * r:.1f} 80Z" fill="{fg}"/>',
-                 f'<path class="tn" d="M44 {40 - r:.1f}L{44 + r:.1f} {40 + r * .8:.1f}H{44 - r:.1f}Z" fill="{fg}"/>',
-                 f'<circle class="br" cx="44" cy="40" r="{r * .75:.1f}" fill="none" stroke="{fg}" stroke-width="{r * .45:.1f}"/>')[i % 6]
-        shape = shape.replace('class="', f'style="animation-delay:-{i * .7:.1f}s" class="')
-        b.append(f'<svg x="{24 + i % 4 * 88}" y="{18 + i // 4 * 80}" width="88" height="80"><rect width="88" height="80" fill="{bg}"/>{shape}</svg>')
-    b.append(f'<rect x="24" y="18" width="352" height="240" fill="none" stroke="{black}" stroke-width="2"/>'
-             f'<text {face} x="24" y="281" fill="{black}">TWELVE MONTHS</text>'
-             f'<text {face} x="376" y="281" text-anchor="end" fill="{red}">{days[-1]["date"][:4]}</text>')
-    css = """@keyframes br{0%,100%{transform:scale(1)}50%{transform:scale(.84)}}
-@keyframes turn{to{transform:rotate(360deg)}}
-.br,.tn{transform-box:fill-box;transform-origin:center}
-.br{animation:br 5s ease-in-out infinite}
-.tn{animation:turn 36s linear infinite}"""
-    return svg(400, 300, "\n".join(b), css)
-
-
 def fetch():
     token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
     if not token:
         sys.exit("No token. Run: GH_TOKEN=$(gh auth token) python3 build.py")
     query = ("query($u:String!){user(login:$u){repositories(first:100,ownerAffiliations:OWNER,isFork:false){nodes{stargazerCount languages(first:10,orderBy:{field:SIZE,direction:DESC}){edges{size node{name}}}}}"
-             "contributionsCollection{contributionCalendar{totalContributions weeks{contributionDays{contributionCount date weekday}}}}}}")
+             "contributionsCollection{contributionCalendar{totalContributions weeks{contributionDays{contributionCount weekday}}}}}}")
     req = urllib.request.Request("https://api.github.com/graphql",
                                  json.dumps({"query": query, "variables": {"u": LOGIN}}).encode(),
                                  {"Authorization": f"bearer {token}"})
@@ -457,10 +367,7 @@ def main():
     (OUT / "mixtape.svg").write_text(mixtape(counts, today))
     (OUT / "year.svg").write_text(year(today))
     days = [d for wk in cal["weeks"] for d in wk["contributionDays"]]
-    (OUT / "neon.svg").write_text(neon(counts))
-    (OUT / "ridges.svg").write_text(ridges(cal["weeks"]))
     (OUT / "chalk.svg").write_text(chalk(days))
-    (OUT / "poster.svg").write_text(poster(days))
 
 
 if __name__ == "__main__":
