@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+<style>.px{shape-rendering:crispEdges}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+@keyframes flick{0%,18%,22%,25%,53%,57%,100%{opacity:1}20%,24%,55%{opacity:.3}}
+@keyframes hum{0%,100%{opacity:1}50%{opacity:.8}}
+.flick{animation:flick 4.5s infinite}
+.hum{animation:hum 3s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}</style>
+<defs><pattern id="brick" width="40" height="20" patternUnits="userSpaceOnUse"><rect width="40" height="20" fill="#1d1626"/><path d="M0 .5H40M0 10.5H40M20 0V10M.5 10V20" stroke="#2b2137" stroke-width="1.5"/></pattern><filter id="glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+<rect width="400" height="300" rx="14" fill="url(#brick)"/>
+<path d="M120 0V98M280 0V98" stroke="#0e0a14" stroke-width="2"/>
+<path fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)" stroke="#ffe066" stroke-width="3" d="M177 72L172 38L190 52Q200 47 210 52L228 38L223 72Q222 88 200 88Q178 88 177 72ZM189 68q3 -4 6 0M205 68q3 -4 6 0M197 77h6"/>
+<rect fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)" class="hum" x="48" y="100" width="304" height="152" rx="22" stroke="#4de1ff" stroke-width="3"/>
+<text fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)" font-family="'Arial Rounded MT Bold','Helvetica Neue',Arial,sans-serif" font-weight="700" text-anchor="middle" class="flick" x="200" y="188" font-size="78" letter-spacing="6" stroke="#ff4fa3" stroke-width="3">OPEN</text>
+<text font-family="'Arial Rounded MT Bold','Helvetica Neue',Arial,sans-serif" font-weight="700" text-anchor="middle" x="200" y="230" font-size="19" letter-spacing="3" fill="#ffe066" filter="url(#glow)">55 DAY STREAK</text>
+</svg>

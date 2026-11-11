@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+<style>.px{shape-rendering:crispEdges}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+@keyframes sc{from{stroke-dashoffset:1}}
+.sc{stroke-dasharray:1;animation:sc .9s ease-out backwards}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}</style>
+<defs><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="2.4"/></filter></defs>
+<rect width="400" height="300" rx="14" fill="#8a5a2b"/><rect x="12" y="12" width="376" height="276" rx="6" fill="#2f4f43"/>
+<ellipse cx="130" cy="150" rx="120" ry="50" fill="#fff" opacity=".035"/><ellipse cx="290" cy="90" rx="80" ry="34" fill="#fff" opacity=".03"/>
+<g filter="url(#rough)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<text font-family="'Chalkboard SE','Marker Felt','Comic Sans MS','Segoe Print',cursive" stroke="none" x="34" y="52" font-size="21" fill="#f4f1e8">commits by weekday</text>
+<path d="M36 238H364" stroke="#f4f1e8" stroke-width="3"/>
+<path d="M330 40l-4 -16l10 8q6 -3 12 0l10 -8l-4 16q0 12 -12 12t-12 -12zM336 42h.5M348 42h.5" stroke="#f4f1e8" stroke-width="2.5"/>
+<path class="sc" pathLength="1" d="M50 234L78 227L50 220L78 213L50 206L78 199L50 192L78 185L50 178L78 171L50 164L78 157L50 150L78 143L50 136L78 129L50 122" stroke="#f4f1e8" stroke-width="4.5" style="animation-delay:0.00s"/><text font-family="'Chalkboard SE','Marker Felt','Comic Sans MS','Segoe Print',cursive" stroke="none" x="64" y="262" font-size="17" text-anchor="middle" fill="#f4f1e8">M</text>
+<path class="sc" pathLength="1" d="M94 234L122 227L94 220L122 213L94 206L122 199L94 192L122 185L94 178L122 171L94 164L122 157L94 150L122 143L94 136L122 129L94 122L122 115L94 108L122 101L94 94" stroke="#ffe27a" stroke-width="4.5" style="animation-delay:0.22s"/><text font-family="'Chalkboard SE','Marker Felt','Comic Sans MS','Segoe Print',cursive" stroke="none" x="108" y="262" font-size="17" text-anchor="middle" fill="#f4f1e8">T</text>
+<text font-family="'Chalkboard SE','Marker Felt','Comic Sans MS','Segoe Print',cursive" stroke="none" x="108" y="82" font-size="15" text-anchor="middle" fill="#ff9ec4">busiest!</text>
+<path class="sc" pathLength="1" d="M138 234L166 227L138 220L166 213L138 206L166 199L138 192L166 185L138 178L166 171L138 164L166 157L138 150" stroke="#f4f1e8" stroke-width="4.5" style="animation-delay:0.44s"/><text font-family="'Chalkboard SE','Marker Felt','Comic Sans MS','Segoe Print',cursive" stroke="none" x="152" y="262" font-size="17" text-anchor="middle" fill="#f4f1e8">W</text>
+<path class="sc" pathLength="1" d="M182 234L210 227L182 220L210 213L182 206L210 199L182 192L210 185L182 178L210 171" stroke="#f4f1e8" stroke-width="4.5" style="animation-delay:0.66s"/><text font-family="'Chalkboard SE','Marker Felt','Comic Sans MS','Segoe Print',cursive" stroke="none" x="196" y="262" font-size="17" text-anchor="middle" fill="#f4f1e8">T</text>
+<path class="sc" pathLength="1" d="M226 234L254 227L226 220L254 213L226 206L254 199L226 192L254 185L226 178L254 171" stroke="#f4f1e8" stroke-width="4.5" style="animation-delay:0.88s"/><text font-family="'Chalkboard SE','Marker Felt','Comic Sans MS','Segoe Print',cursive" stroke="none" x="240" y="262" font-size="17" text-anchor="middle" fill="#f4f1e8">F</text>
+<path class="sc" pathLength="1" d="M270 234L298 227L270 220L298 213L270 206L298 199L270 192L298 185L270 178" stroke="#f4f1e8" stroke-width="4.5" style="animation-delay:1.10s"/><text font-family="'Chalkboard SE','Marker Felt','Comic Sans MS','Segoe Print',cursive" stroke="none" x="284" y="262" font-size="17" text-anchor="middle" fill="#f4f1e8">S</text>
+<path class="sc" pathLength="1" d="M314 234L342 227L314 220L342 213L314 206L342 199L314 192L342 185L314 178L342 171L314 164L342 157L314 150L342 143L314 136" stroke="#f4f1e8" stroke-width="4.5" style="animation-delay:1.32s"/><text font-family="'Chalkboard SE','Marker Felt','Comic Sans MS','Segoe Print',cursive" stroke="none" x="328" y="262" font-size="17" text-anchor="middle" fill="#f4f1e8">S</text>
+</g>
+</svg>
