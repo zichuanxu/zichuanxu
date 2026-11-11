@@ -5,7 +5,6 @@
 
 rooftops.svg  a cat runs the year as a platformer: one building per week, taller = busier, five fish to catch
 scores.svg    arcade high-score board
-pet.svg       virtual pet that is fed by contributions
 tank.svg      aquarium: the four biggest languages swim as fish
 mixtape.svg   cassette whose equaliser is the last two weeks and whose tape winds through the year
 year.svg      the cat naps on a progress bar for the year
@@ -37,15 +36,11 @@ FONT = dict(zip("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-:.! %+#", """
 
 CAT_RUN = ["#.......#.#.", "#.......####", ".#..#####.##", ".###########", "..#########.", "..########.."]
 LEGS = ([".#..#..#..#.", ".#........#."], ["...#.##.#...", "...#....#..."])
+PEEK = [".#.......#.", ".##.....##.", ".#########.", "###.###.###"]  # the cat's ears and eyes, seen from the front
 FISH = ["#...##.", "##.####", "#######", "##.####", "#...##."]
-HEART = ["##.##", "#####", ".###.", "..#.."]
 SWIMMER = ["#...###..", "##.#####.", "######.##", "##.#####.", "#...###.."]
 LOAF = ["#.#........", "###.......#", "##########.", "##########.", ".########.."]
 INK, CREAM = "#2b2d42", "#fff3d6"
-# Front-facing pet; rows 3 and 5 (eyes, mouth) are swapped per mood.
-PET = [".#.......#.", ".##.....##.", ".#########.", None, "###########", None,
-       ".#########.", "..#######..", ".#########.", ".##.###.##."]
-FACES = {"happy": ("###.###.###", "####.#.####"), "hungry": ("###.###.###", "#####.#####"), "asleep": ("##..###..##", "###########")}
 
 
 def bitmap(rows, x, y, s, fill, on="#", attrs="", cls=""):
@@ -78,14 +73,7 @@ def longest_run(counts):
     return best
 
 
-def mood(counts):
-    """(mood, days since the last contribution). Fed within a day is happy, within four is hungry."""
-    idle = next((i for i, c in enumerate(reversed(counts)) if c), len(counts))
-    return ("happy" if idle <= 1 else "hungry" if idle <= 4 else "asleep"), idle
-
-
 assert longest_run([0, 1, 2, 0, 3]) == 2 and longest_run([]) == 0
-assert mood([5, 0]) == ("happy", 1) and mood([5, 0, 0, 0, 0]) == ("hungry", 4) and mood([5] + [0] * 5) == ("asleep", 5)
 
 
 def during(a, b, dur):
@@ -185,32 +173,6 @@ def scores(rows):
     return svg(400, 300, "\n".join(b), "@keyframes in{from{opacity:0}}")
 
 
-def pet(counts):
-    state, idle = mood(counts)
-    ink, days = "#2a3324", "DAY" if idle == 1 else "DAYS"
-    line = {"happy": "FED TODAY" if idle == 0 else "FED YESTERDAY", "hungry": f"HUNGRY {idle} {days}", "asleep": f"ASLEEP {idle} {days}"}[state]
-    eyes, mouth = FACES[state]
-    sprite = [eyes if i == 3 else mouth if i == 5 else row for i, row in enumerate(PET)]
-    b = ['<circle cx="200" cy="20" r="10" fill="none" stroke="#9aa0a6" stroke-width="3"/>',
-         '<path d="M200 30C268 30 312 118 312 186C312 250 262 290 200 290C138 290 88 250 88 186C88 118 132 30 200 30Z" fill="#ffcc33" stroke="#e0a800" stroke-width="4"/>',
-         '<ellipse cx="160" cy="84" rx="22" ry="12" fill="#fff" opacity=".4" transform="rotate(-38 160 84)"/>',
-         '<rect x="126" y="92" width="148" height="122" rx="20" fill="#6b4de6"/><rect x="140" y="104" width="120" height="98" rx="6" fill="#c9d6b8"/>']
-    b += [f'<circle cx="{x}" cy="248" r="9" fill="#6b4de6"/>' for x in (164, 200, 236)]
-    # One heart per day of the last week, solid if that day had a contribution.
-    b += [bitmap(HEART, 147 + i * 16, 110, 2, ink, attrs="" if c else 'opacity=".22"') for i, c in enumerate(counts[-7:])]
-    b.append(bitmap(sprite, 173, 127, 5, ink, cls="hop" if state == "happy" else ""))
-    if state == "happy":
-        b.append(bitmap(HEART, 236, 130, 2, ink, cls="up"))
-    if state == "asleep":
-        b.append(text("Z", 236, 138, 2, ink, cls="up") + text("Z", 246, 126, 3, ink, 'style="animation-delay:-1s"', "up"))
-    b.append(centered(line, 200, 185, 2, ink, 'style="animation:blink 1.4s infinite"' if state == "hungry" else ""))
-    css = """@keyframes hop{0%,49%{transform:none}50%,100%{transform:translateY(-5px)}}
-@keyframes up{0%{opacity:0;transform:none}25%{opacity:1}100%{opacity:0;transform:translateY(-12px)}}
-.hop{animation:hop .9s infinite}
-.up{animation:up 2s infinite}"""
-    return svg(400, 300, "\n".join(b), css)
-
-
 def tank(langs):
     """langs: [(name, share of all code)], biggest first."""
     rnd = random.Random(3)
@@ -218,7 +180,7 @@ def tank(langs):
     b = ['<defs><linearGradient id="w" x2="0" y2="1"><stop offset="0" stop-color="#4fd8d2"/><stop offset="1" stop-color="#1a5fb0"/></linearGradient>'
          f'<clipPath id="t"><rect {box}/></clipPath></defs>',
          '<rect width="400" height="300" rx="14" fill="#2c2250"/>',
-         bitmap(PET[:3] + [FACES["happy"][0]], 290, 18, 4, CREAM, cls="peek"),  # ears stay up, eyes pop over the lid now and then
+         bitmap(PEEK, 290, 18, 4, CREAM, cls="peek"),  # ears stay up, eyes pop over the lid now and then
          f'<rect {box} fill="url(#w)"/><g clip-path="url(#t)">']
     b += [f'<path d="M{x} 44h{w}l-{w + 30} 204h-{w}z" fill="#fff" opacity=".07"/>' for x, w in ((110, 46), (210, 26), (318, 54))]
     b.append('<path d="M28 232Q80 220 140 230T260 228T372 224V248H28Z" fill="#f2d9a0"/>'
@@ -355,7 +317,6 @@ def main():
         ("ACTIVE DAYS", sum(1 for c in counts if c)),
         ("BEST STREAK", longest_run(counts)),
     ]))
-    (OUT / "pet.svg").write_text(pet(counts))
     sizes = {}
     for repo in user["repositories"]["nodes"]:
         for edge in repo["languages"]["edges"]:
