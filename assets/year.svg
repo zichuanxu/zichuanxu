@@ -76,12 +76,12 @@
 <rect x="641" y="52" width="13" height="16" rx="2" fill="#ffd23f"/>
 <rect x="656" y="52" width="13" height="16" rx="2" fill="#ffd23f"/>
 <rect x="671" y="52" width="13" height="16" rx="2" fill="#ffd23f"/>
-<rect x="686" y="52" width="13" height="16" rx="2" fill="#fff" opacity=".16"/>
+<rect x="686" y="52" width="13" height="16" rx="2" fill="#ffd23f"/>
 <rect x="701" y="52" width="13" height="16" rx="2" fill="#fff" opacity=".16"/>
 <rect x="716" y="52" width="13" height="16" rx="2" fill="#fff" opacity=".16"/>
 <rect x="731" y="52" width="13" height="16" rx="2" fill="#fff" opacity=".16"/>
 <rect x="746" y="52" width="13" height="16" rx="2" fill="#fff" opacity=".16"/>
 <rect x="761" y="52" width="13" height="16" rx="2" fill="#fff" opacity=".16"/>
-<path class="px " d="M651 37h3v3h-3zM657 37h3v3h-3zM651 40h9v3h-9zM681 40h3v3h-3zM651 43h30v3h-30zM651 46h30v3h-30zM654 49h24v3h-24z" fill="#fff3d6" />
-<path class="px up" d="M653 24h6v2h-6zM657 26h2v2h-2zM655 28h2v2h-2zM653 30h2v2h-2zM653 32h6v2h-6z" fill="#fff3d6" />
+<path class="px " d="M666 37h3v3h-3zM672 37h3v3h-3zM666 40h9v3h-9zM696 40h3v3h-3zM666 43h30v3h-30zM666 46h30v3h-30zM669 49h24v3h-24z" fill="#fff3d6" />
+<path class="px up" d="M668 24h6v2h-6zM672 26h2v2h-2zM670 28h2v2h-2zM668 30h2v2h-2zM668 32h6v2h-6z" fill="#fff3d6" />
 </svg>
